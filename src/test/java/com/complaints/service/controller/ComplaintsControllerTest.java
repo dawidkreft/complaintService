@@ -118,6 +118,19 @@ class ComplaintsControllerTest extends BaseTest {
                 .andExpect(jsonPath("$.description").value("Updated description"));
     }
 
+    @Test
+    @Transactional
+    public void shouldThrowExceptionWhenUserTrysToUpdateOtherUserComplaint() throws Exception {
+        var complaint = saveComplaint(123L);
+        var request = getUpdateComplaintRequest("Updated description");
+
+        mockMvc.perform(put("/api/complaints/" + complaint.getId())
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .header("userID", 456L)
+                        .content(getAsJson(request)))
+                .andExpect(status().isForbidden());
+    }
+
     private Complaint saveComplaint(long userId) {
         var complaint = new Complaint();
         complaint.setUserId(userId);
