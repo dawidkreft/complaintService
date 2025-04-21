@@ -1,6 +1,5 @@
 package com.complaints.service.repository;
 
-import com.complaints.service.model.DTOs.ComplaintDTO;
 import com.complaints.service.model.entity.Complaint;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
