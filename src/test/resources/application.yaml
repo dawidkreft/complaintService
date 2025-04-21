@@ -1,0 +1,3 @@
+geo:
+  api:
+    base-url: http://localhost:12345
