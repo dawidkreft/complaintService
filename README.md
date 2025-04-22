@@ -15,15 +15,15 @@
 
 To run the microservice, simply execute one command. Using **Podman Compose**, the entire infrastructure (PostgreSQL database and Spring Boot application) will be started in containers.
 
-1. **Build and start the service**:
+**Build and start the service**:
 
-   Make sure **Podman** and **Podman Compose** are installed on your system.
+Make sure **Podman** and **Podman Compose** are installed on your system.
 
-   Run the following command from the project’s root directory, where the `docker-compose.yml` file is located:
+Run the following command from the project’s root directory, where the `docker-compose.yml` file is located:
 
-   ```bash
-   podman-compose up
-    ```
+```bash
+podman-compose up
+```
 
 **Building the Image Manually**
 
@@ -31,9 +31,9 @@ If you'd like to build the application image manually, follow these steps:
 
 Build the application: Run the following command in the project root:
 
-   ```bash   
+```bash   
 mvn clean package
-   ```
+```
     
 Build the Docker image: Then run:
   
@@ -47,10 +47,11 @@ Run the application: After the image is built, you can run the application with:
 podman run -d --name spring-app -p 8080:8080 spring-app
 ```
 
+## API Documentation
 
-Check API endpoints with swagger:
-http://localhost:8080/swagger-ui/index.html
+Swagger UI is available at:
 
+[http://localhost:8080/swagger-ui/index.html](http://localhost:8080/swagger-ui/index.html)
 
 ## Monitoring Metrics with Spring Boot Actuator
 
@@ -58,14 +59,11 @@ Spring Boot Actuator provides several useful endpoints that can be used to monit
 
 ### Exposing Actuator Endpoints
 
-In order to expose relevant actuator endpoints, you need to enable in the  properties `application.yml` file
+To expose relevant Actuator endpoints, make sure they are enabled in the `application.yml` file.
 
+### Available Endpoints
 
-Available Endpoints
-- /actuator/metrics: Displays all available metrics.
-
-- /actuator/health: Displays the health status of the application.
-
-- /actuator/info: Displays information about the application (configured via application.properties).
-
-- /actuator/metrics/http.server.requests: Displays the response time for endpoints.
+- `/actuator/metrics` – Displays all available metrics.
+- `/actuator/health` – Displays the application's health status.
+- `/actuator/info` – Displays basic application information (configured via `application.yml` or `application.properties`).
+- `/actuator/metrics/http.server.requests` – Displays response time metrics for HTTP endpoints.
