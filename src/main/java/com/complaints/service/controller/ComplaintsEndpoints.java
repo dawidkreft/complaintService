@@ -23,15 +23,19 @@ public interface ComplaintsEndpoints {
 
     @Timed
     @GetMapping
-    @Operation(summary = "Get page of complaints.", description = "UserId have to be provided by header.")
+    @Operation(
+            summary = "Get page of complaints",
+            description = "UserId must be provided in the header."
+    )
     @ResponseStatus(OK)
-    Page<ComplaintDTO> getPage(
-            Pageable pageable
-    );
+    Page<ComplaintDTO> getPage(Pageable pageable);
 
     @Timed
     @PostMapping
-    @Operation(summary = "Add new complaint.", description = "UserId have to be provided by header.")
+    @Operation(
+            summary = "Add new complaint",
+            description = "UserId must be provided in the header."
+    )
     @ResponseStatus(CREATED)
     ComplaintDTO addNewComplaint(
             @RequestBody @Valid CreateComplaintRequest request
@@ -39,10 +43,14 @@ public interface ComplaintsEndpoints {
 
     @Timed
     @PutMapping("/{id}")
-    @Operation(summary = "Update complaint.", description = "UserId have to be provided by header.")
+    @Operation(
+            summary = "Update complaint",
+            description = "UserId must be provided in the header."
+    )
     @ResponseStatus(OK)
     ComplaintDTO update(
             @RequestBody @Valid UpdateComplaintRequest updateComplaintRequest,
-            @PathVariable(value = "id") long id
+            @PathVariable("id") long id
     );
 }
+
